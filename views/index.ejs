@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="calculator.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-wijdth, initial-scale=1.0">
+    <title>Calculadora - Clebson Araújo</title>
+</head>
+<body>
+    
+        <div class="header">
+            <h2 class="text-center mt-3"><%=title%></h2>
+        </div>
+        <div class="table">
+            <caption>Histórico</caption>
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Operação</th>
+                        <th>Data</th>
+                    </tr>  
+                </thead>
+                <tbody>
+                    <% data.forEach(function(d){ %>
+                        <tr>
+                            <td><%=d.id%></td>
+                            <td><%=d.op%></td>
+                            <td><%=d.dt_registro%></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>         
+        </div>
+        <div class="calculator">
+            <div class="display">
+                <div id="display">0</div>
+            </div>
+            <div class="keyboard">
+                <button onclick="clearDisplay();fList('')" class="btn-ac">AC</button>
+                <button onclick="startCalculating('/');fList('/')"  class="btn-orange">/</button>
+                <button onclick="includeDigit('7');fList('7')">7</button>
+                <button onclick="includeDigit('8');fList('8')" >8</button>
+                <button onclick="includeDigit('9');fList('9')" >9</button>
+                <button onclick="startCalculating('*');fList('*')"  class="btn-orange">X</button>
+                <button onclick="includeDigit('4');fList('4')"  >4</button>
+                <button onclick="includeDigit('5');fList('5')" >5</button>
+                <button onclick="includeDigit('6');fList('6')" >6</button>
+                <button onclick="startCalculating('-');fList('-')"  class="btn-orange">-</button>
+                <button onclick="includeDigit('1');fList('1')" >1</button>
+                <button onclick="includeDigit('2');fList('2')" >2</button>
+                <button onclick="includeDigit('3');fList('3')" >3</button>
+                <button onclick="startCalculating('+');fList('+')"  class="btn-orange">+</button>
+                <button onclick="includeDigit('0');fList('0')"  class="btn-zero">0</button>
+                <button onclick="includePoint();fList('.')" >.</button>
+                <form action="/save" method="POST">
+                    <input type="text" name="list" hidden id="inputList">
+                    <button onclick="finishCalculating();finishList()"  class="btn-orange">=</button>
+                </form>
+                
+            </div>
+        </div>
+    <div class="footer">
+        <p>Desenvolvido por Clebson Araújo</p>
+    </div>
+    
+    
+</body>
+</html>
